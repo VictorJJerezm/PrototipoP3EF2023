@@ -45,7 +45,7 @@ public class MDI_EF extends javax.swing.JFrame {
         mnuSalirSistema = new javax.swing.JCheckBoxMenuItem();
         mnuCatalogos = new javax.swing.JMenu();
         mnuCatalogosMantenimientos = new javax.swing.JMenu();
-        mantenimientoLineas = new javax.swing.JCheckBoxMenuItem();
+        mantenimientoClientes = new javax.swing.JCheckBoxMenuItem();
         mnuProcesos = new javax.swing.JMenu();
         transaccionReservas = new javax.swing.JCheckBoxMenuItem();
         mnuConsultas = new javax.swing.JMenu();
@@ -103,14 +103,14 @@ public class MDI_EF extends javax.swing.JFrame {
             }
         });
 
-        mantenimientoLineas.setSelected(true);
-        mantenimientoLineas.setText("Mantenimiento Clientes");
-        mantenimientoLineas.addActionListener(new java.awt.event.ActionListener() {
+        mantenimientoClientes.setSelected(true);
+        mantenimientoClientes.setText("Mantenimiento Clientes");
+        mantenimientoClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoLineasActionPerformed(evt);
+                mantenimientoClientesActionPerformed(evt);
             }
         });
-        mnuCatalogosMantenimientos.add(mantenimientoLineas);
+        mnuCatalogosMantenimientos.add(mantenimientoClientes);
 
         mnuCatalogos.add(mnuCatalogosMantenimientos);
 
@@ -196,14 +196,14 @@ public class MDI_EF extends javax.swing.JFrame {
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
     }//GEN-LAST:event_consultaBitacoraActionPerformed
 
-    private void mantenimientoLineasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoLineasActionPerformed
+    private void mantenimientoClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoClientesActionPerformed
         // TODO add your handling code here:
-        frmLineas ventana = new frmLineas();
+        frmClientes ventana = new frmClientes();
         jDesktopPane1.add(ventana);
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
-    }//GEN-LAST:event_mantenimientoLineasActionPerformed
+    }//GEN-LAST:event_mantenimientoClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,7 +255,7 @@ public class MDI_EF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JCheckBoxMenuItem mantenimientoLineas;
+    private javax.swing.JCheckBoxMenuItem mantenimientoClientes;
     private javax.swing.JMenu mnuArchivo;
     private javax.swing.JMenu mnuAyudas;
     private javax.swing.JMenu mnuCatalogos;

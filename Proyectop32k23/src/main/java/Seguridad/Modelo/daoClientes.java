@@ -5,7 +5,7 @@
  */
 package Seguridad.Modelo;
 
-import Seguridad.Controlador.clsLineas;
+import Seguridad.Controlador.clsClientes;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,37 +14,37 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoLineas {
+public class daoClientes {
 
-    private static final String SQL_SELECT = "SELECT linCodigo, linNombre, linPrecios, linEstatus FROM tbl_lineas";
-    private static final String SQL_INSERT = "INSERT INTO tbl_lineas(linNombre, linPrecios, linEstatus) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_lineas SET linNombre=?, linPrecios=?, linEstatus=? WHERE linCodigo = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_lineas WHERE linCodigo=?";
-    private static final String SQL_SELECT_NOMBRE = "SELECT linCodigo, linNombre, linPrecios, linEstatus FROM tbl_lineas WHERE linNombre = ?";
-    private static final String SQL_SELECT_ID = "SELECT linCodigo, linNombre, linPrecios, linEstatus FROM tbl_lineas WHERE linCodigo = ?";    
+    private static final String SQL_SELECT = "SELECT idClientes, Nombre, Nit FROM clientes";
+    private static final String SQL_INSERT = "INSERT INTO clientes(Nombre, Nit) VALUES(?, ?)";
+    private static final String SQL_UPDATE = "UPDATE clientes SET Nombre=?, Nit=? WHERE idClientes = ?";
+    private static final String SQL_DELETE = "DELETE FROM clientes WHERE idClientes=?";
+    private static final String SQL_SELECT_NOMBRE = "SELECT idClientes, Nombre, Nit FROM clientes WHERE Nombre = ?";
+    private static final String SQL_SELECT_ID = "SELECT idClientes, Nombre, Nit FROM clientes WHERE idClientes = ?";    
 
-    public List<clsLineas> consultaLineas() {
+    public List<clsClientes> consultaClientes() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        List<clsLineas> lineas = new ArrayList<>();
+        List<clsClientes> clientes = new ArrayList<>();
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("linCodigo");
-                String nombre = rs.getString("linNombre");
-                double precio = rs.getDouble("linPrecios");
-                String estatus = rs.getString("linEstatus");
-                clsLineas Lineas = new clsLineas();
-                Lineas.setIdLineas(id);
-                Lineas.setNombreLineas(nombre);
-                Lineas.setPreciosLineas(precio);
-                Lineas.setEstatusLineas(estatus);
+                int id = rs.getInt("idClientes");
+                String nombre = rs.getString("Nombre");
+                String nit = rs.getString("Nit");
                 
-                lineas.add(Lineas);
+                clsClientes Clientes = new clsClientes();
+                
+                Clientes.setIdClientes(id);
+                Clientes.setNombreClientes(nombre);
+                Clientes.setNitClientes(nit);
+                
+                clientes.add(Clientes);
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -53,19 +53,18 @@ public class daoLineas {
             Conexion.close(stmt);
             Conexion.close(conn);
         }
-        return lineas;
+        return clientes;
     }
 
-    public int ingresaLineas(clsLineas lineas) {
+    public int ingresaClientes(clsClientes clientes) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, lineas.getNombreLineas());
-            stmt.setDouble(2, lineas.getPreciosLineas());
-            stmt.setString(3, lineas.getEstatusLineas());
+            stmt.setString(1, clientes.getNombreClientes());
+            stmt.setString(2, clientes.getNitClientes());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -80,7 +79,7 @@ public class daoLineas {
         return rows;
     }
 
-    public int actualizaLineas(clsLineas lineas) {
+    public int actualizaClientes(clsClientes clientes) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -88,10 +87,9 @@ public class daoLineas {
             conn = Conexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, lineas.getNombreLineas());
-            stmt.setDouble(2, lineas.getPreciosLineas());
-            stmt.setString(3, lineas.getEstatusLineas());
-            stmt.setInt(4, lineas.getIdLineas());
+            stmt.setString(1, clientes.getNombreClientes());
+            stmt.setString(2, clientes.getNitClientes());
+            stmt.setInt(3, clientes.getIdClientes());
             
 
             rows = stmt.executeUpdate();
@@ -107,7 +105,7 @@ public class daoLineas {
         return rows;
     }
 
-    public int borrarLineas(clsLineas lineas) {
+    public int borrarClientes(clsClientes clientes) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -116,7 +114,7 @@ public class daoLineas {
             conn = Conexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, lineas.getIdLineas());
+            stmt.setInt(1, clientes.getIdClientes());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -129,29 +127,27 @@ public class daoLineas {
         return rows;
     }
 
-    public clsLineas consultaLineasPorNombre(clsLineas lineas) {
+    public clsClientes consultaClientesPorNombre(clsClientes clientes) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + lineas);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + clientes);
             stmt = conn.prepareStatement(SQL_SELECT_NOMBRE);
             //stmt.setInt(1, aplicacion.getIdAplicacion());            
-            stmt.setString(1, lineas.getNombreLineas());
+            stmt.setString(1, clientes.getNombreClientes());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("linCodigo");
-                String nombre = rs.getString("linNombre");
-                double precios = rs.getDouble("linPrecios");
-                String estatus = rs.getString("linEstatus");
+                int id = rs.getInt("idClientes");
+                String nombre = rs.getString("Nombre");
+                String nit = rs.getString("Nit");
 
                 //aplicacion = new clsAplicacion();
-                lineas.setIdLineas(id);
-                lineas.setNombreLineas(nombre);
-                lineas.setPreciosLineas(precios);
-                lineas.setEstatusLineas(estatus);
-                System.out.println(" registro consultado: " + lineas);                
+                clientes.setIdClientes(id);
+                clientes.setNombreClientes(nombre);
+                clientes.setNitClientes(nit);
+                System.out.println(" registro consultado: " + clientes);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -163,31 +159,29 @@ public class daoLineas {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return lineas;
+        return clientes;
     }
-    public clsLineas consultaLineasPorId(clsLineas lineas) {
+    public clsClientes consultaClientesPorId(clsClientes clientes) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
             conn = Conexion.getConnection();
-            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + lineas);
+            System.out.println("Ejecutando query:" + SQL_SELECT_NOMBRE + " objeto recibido: " + clientes);
             stmt = conn.prepareStatement(SQL_SELECT_ID);
-            stmt.setInt(1, lineas.getIdLineas());            
+            stmt.setInt(1, clientes.getIdClientes());            
             //stmt.setString(1, aplicacion.getNombreAplicacion());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("linCodigo");
-                String nombre = rs.getString("linNombre");
-                double precios = rs.getDouble("linPrecios");
-                String estatus = rs.getString("linEstatus");
+                int id = rs.getInt("idClientes");
+                String nombre = rs.getString("Nombre");
+                String nit = rs.getString("Nit");
 
                 //aplicacion = new clsAplicacion();
-                lineas.setIdLineas(id);
-                lineas.setNombreLineas(nombre);
-                lineas.setPreciosLineas(precios);
-                lineas.setEstatusLineas(estatus);
-                System.out.println(" registro consultado: " + lineas);                
+                clientes.setIdClientes(id);
+                clientes.setNombreClientes(nombre);
+                clientes.setNitClientes(nit);
+                System.out.println(" registro consultado: " + clientes);                
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -199,6 +193,6 @@ public class daoLineas {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return lineas;
+        return clientes;
     }    
 }
