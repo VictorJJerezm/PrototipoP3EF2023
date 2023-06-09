@@ -164,53 +164,6 @@ public class frmLogin extends javax.swing.JFrame {
                     menuGeneral.setVisible(true);
                     this.dispose();
                     
-                    //Se agrega switch case para darle funcionalidad al combobox
-                    //Victor Josué Jerez Mijangos
-                    /*String areaSeleccionada;
-                    areaSeleccionada = cboOpciones.getSelectedItem().toString();
-             
-                     switch (areaSeleccionada) {
-                        case "Ventas":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Compras":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Bancos":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        case "Cuentas corrientes":
-                        try {
-                            MdiSeguridad menu = new MdiSeguridad();
-                            menu.setVisible(true);
-                            this.dispose();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }   
-                        break;
-                        default:
-                            break;
-                     }  */      
-                //En todas las opciones del "case" se utiliza el mismo acceso de "MdiSeguridad" debido a que
-                //al no tener los demás MDI'S se estipulo que iban a tener el mismo.
                 } else {
                     JOptionPane.showMessageDialog(this, "ERROR AL ENCONTRAR USUARIO o CONTRASEÑA",                              "ERROR", JOptionPane.ERROR_MESSAGE);
                     txtContraseña.setText("");

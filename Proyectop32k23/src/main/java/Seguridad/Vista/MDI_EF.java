@@ -45,13 +45,11 @@ public class MDI_EF extends javax.swing.JFrame {
         mnuSalirSistema = new javax.swing.JCheckBoxMenuItem();
         mnuCatalogos = new javax.swing.JMenu();
         mnuCatalogosMantenimientos = new javax.swing.JMenu();
-        mantenimientoUsuarios = new javax.swing.JMenuItem();
-        mantenimientoTipoUsuarios = new javax.swing.JCheckBoxMenuItem();
         mantenimientoLineas = new javax.swing.JCheckBoxMenuItem();
         mnuProcesos = new javax.swing.JMenu();
+        transaccionReservas = new javax.swing.JCheckBoxMenuItem();
         mnuConsultas = new javax.swing.JMenu();
         consultaBitacora = new javax.swing.JCheckBoxMenuItem();
-        mnuReportes = new javax.swing.JMenu();
         mnuAyudas = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -105,25 +103,8 @@ public class MDI_EF extends javax.swing.JFrame {
             }
         });
 
-        mantenimientoUsuarios.setText("Mantenimiento Usuarios");
-        mantenimientoUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoUsuariosActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimientos.add(mantenimientoUsuarios);
-
-        mantenimientoTipoUsuarios.setSelected(true);
-        mantenimientoTipoUsuarios.setText("Mantenimiento Tipo de Usuarios");
-        mantenimientoTipoUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mantenimientoTipoUsuariosActionPerformed(evt);
-            }
-        });
-        mnuCatalogosMantenimientos.add(mantenimientoTipoUsuarios);
-
         mantenimientoLineas.setSelected(true);
-        mantenimientoLineas.setText("Mantenimiento Lineas");
+        mantenimientoLineas.setText("Mantenimiento Clientes");
         mantenimientoLineas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mantenimientoLineasActionPerformed(evt);
@@ -136,6 +117,11 @@ public class MDI_EF extends javax.swing.JFrame {
         mnuGeneral.add(mnuCatalogos);
 
         mnuProcesos.setText("Procesos");
+
+        transaccionReservas.setSelected(true);
+        transaccionReservas.setText("Registro Reservaciones");
+        mnuProcesos.add(transaccionReservas);
+
         mnuGeneral.add(mnuProcesos);
 
         mnuConsultas.setText("Informe");
@@ -155,9 +141,6 @@ public class MDI_EF extends javax.swing.JFrame {
         mnuConsultas.add(consultaBitacora);
 
         mnuGeneral.add(mnuConsultas);
-
-        mnuReportes.setText("Herramientas");
-        mnuGeneral.add(mnuReportes);
 
         mnuAyudas.setText("Ayudas");
         mnuGeneral.add(mnuAyudas);
@@ -183,15 +166,6 @@ public class MDI_EF extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mnuCatalogosMantenimientosActionPerformed
 
-    private void mantenimientoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoUsuariosActionPerformed
-        // TODO add your handling code here:
-        frmMantenimientoUsuario ventana = new frmMantenimientoUsuario();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
-    }//GEN-LAST:event_mantenimientoUsuariosActionPerformed
-
     private void mnuArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuArchivoActionPerformed
         // TODO add your handling code here:
 
@@ -208,15 +182,6 @@ public class MDI_EF extends javax.swing.JFrame {
             this.dispose();
         }        
     }//GEN-LAST:event_mnuSalirSistemaActionPerformed
-
-    private void mantenimientoTipoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoTipoUsuariosActionPerformed
-        // TODO add your handling code here:
-        frmMantenimientoTipoUsuario ventana = new frmMantenimientoTipoUsuario();
-        jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
-        Dimension FrameSize = ventana.getSize();
-        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.             height) / 2);
-    }//GEN-LAST:event_mantenimientoTipoUsuariosActionPerformed
 
     private void mnuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultasActionPerformed
         // TODO add your handling code here:
@@ -291,8 +256,6 @@ public class MDI_EF extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JCheckBoxMenuItem mantenimientoLineas;
-    private javax.swing.JCheckBoxMenuItem mantenimientoTipoUsuarios;
-    private javax.swing.JMenuItem mantenimientoUsuarios;
     private javax.swing.JMenu mnuArchivo;
     private javax.swing.JMenu mnuAyudas;
     private javax.swing.JMenu mnuCatalogos;
@@ -300,7 +263,7 @@ public class MDI_EF extends javax.swing.JFrame {
     private javax.swing.JMenu mnuConsultas;
     private javax.swing.JMenuBar mnuGeneral;
     private javax.swing.JMenu mnuProcesos;
-    private javax.swing.JMenu mnuReportes;
     private javax.swing.JCheckBoxMenuItem mnuSalirSistema;
+    private javax.swing.JCheckBoxMenuItem transaccionReservas;
     // End of variables declaration//GEN-END:variables
 }
